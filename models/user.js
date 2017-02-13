@@ -3,7 +3,6 @@ var Schema = mongoose.Schema;
 
 var User = new Schema({
   googleId: {
-    required: true,
   },
 });
 
