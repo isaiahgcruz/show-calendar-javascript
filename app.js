@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+const config = require('./config');
 const routes = require('./routes/index');
 const users = require('./routes/users');
 const middlewares = require('./middlewares');
@@ -26,7 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: 'lalala',
+  secret: config.sessionSecret,
   resave: true,
   saveUninitialized: true,
 }));
@@ -37,7 +38,7 @@ app.use(passport.session());
  * MongoDB Configuration
  */
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/shows', (error) => {
+mongoose.connect(config.mongoUri, (error) => {
   if (error) {
     console.error('Please make sure that MongoDB is running');
     throw error;
