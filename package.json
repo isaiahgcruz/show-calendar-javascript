@@ -19,5 +19,8 @@
     "passport-google-oauth": "^1.0.0",
     "request": "^2.79.0",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "webpack": "^2.2.1"
   }
 }
