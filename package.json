@@ -19,5 +19,18 @@
     "passport-google-oauth": "^1.0.0",
     "request": "^2.79.0",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "axios": "^0.15.3",
+    "bulma": "^0.3.1",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.0",
+    "style-loader": "^0.13.1",
+    "vue": "^2.1.10",
+    "vue-loader": "^11.0.0",
+    "vue-template-compiler": "^2.0.0",
+    "webpack": "^2.2.1"
   }
 }
