@@ -3,6 +3,7 @@ const router = express.Router();
 const auth = require('./auth');
 const shows = require('./shows');
 const episodes = require('./episodes');
+const users = require('./users');
 
 const isAuthenticated = require('../middlewares/auth').isAuthenticated;
 
@@ -13,6 +14,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.use(auth);
+router.use('/users/', users);
 router.use(isAuthenticated);
 router.use('/shows/', shows);
 router.use('/', episodes);
