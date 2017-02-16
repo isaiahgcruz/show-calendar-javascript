@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var User = new Schema({
-  googleId: {
-  },
+  googleId: String,
+  name: String,
 
   shows: [{ type: Schema.Types.ObjectId, ref: 'Show'}],
 });
