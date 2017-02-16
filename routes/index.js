@@ -10,7 +10,7 @@ const isAuthenticated = require('../middlewares/auth').isAuthenticated;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { isAuthenticated: req.isAuthenticated() });
+  res.render('index', { title: 'Calendar', isAuthenticated: req.isAuthenticated() });
 });
 
 router.use(auth);

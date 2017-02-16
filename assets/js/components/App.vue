@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <navbar :user="user"></navbar>
     <section class="section">
       <div class="container">

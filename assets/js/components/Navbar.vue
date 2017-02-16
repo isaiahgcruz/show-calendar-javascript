@@ -6,13 +6,13 @@
       </a>
     </div>
 
-    <span class="nav-toggle">
+    <span class="nav-toggle" @click="toggle" :class="{ 'is-active': isToggled }" v-if="user">
       <span></span>
       <span></span>
       <span></span>
     </span>
 
-    <div class="nav-right nav-menu" v-if="user">
+    <div class="nav-right nav-menu" v-if="user" :class="{ 'is-active': isToggled }">
       <span class="nav-item"> {{ user.name }} </span>
       <a href="/auth/logout" class="nav-item">
         Logout
@@ -28,5 +28,17 @@
         required: true,
       },
     },
+
+    data() {
+      return {
+        isToggled: false,
+      };
+    },
+
+    methods: {
+      toggle() {
+        this.isToggled = !this.isToggled;
+      }
+    }
   };
 </script>

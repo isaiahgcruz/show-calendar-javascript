@@ -8251,6 +8251,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       required: true,
     },
   },
+
+  data() {
+    return {
+      isToggled: false,
+    };
+  },
+
+  methods: {
+    toggle() {
+      this.isToggled = !this.isToggled;
+    }
+  }
 };
 
 
@@ -8276,8 +8288,19 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('nav', {
     staticClass: "nav"
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), (_vm.user) ? _c('div', {
-    staticClass: "nav-right nav-menu"
+  }, [_vm._m(0), _vm._v(" "), (_vm.user) ? _c('span', {
+    staticClass: "nav-toggle",
+    class: {
+      'is-active': _vm.isToggled
+    },
+    on: {
+      "click": _vm.toggle
+    }
+  }, [_c('span'), _vm._v(" "), _c('span'), _vm._v(" "), _c('span')]) : _vm._e(), _vm._v(" "), (_vm.user) ? _c('div', {
+    staticClass: "nav-right nav-menu",
+    class: {
+      'is-active': _vm.isToggled
+    }
   }, [_c('span', {
     staticClass: "nav-item"
   }, [_vm._v(" " + _vm._s(_vm.user.name) + " ")]), _vm._v(" "), _c('a', {
@@ -8292,10 +8315,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('a', {
     staticClass: "nav-item"
   }, [_vm._v("\n      Calendar\n    ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('span', {
-    staticClass: "nav-toggle"
-  }, [_c('span'), _vm._v(" "), _c('span'), _vm._v(" "), _c('span')])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -8310,7 +8329,9 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('navbar', {
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('navbar', {
     attrs: {
       "user": _vm.user
     }
