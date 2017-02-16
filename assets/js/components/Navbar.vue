@@ -6,7 +6,14 @@
       </a>
     </div>
 
-    <div class="nav-right" v-if="user">
+    <span class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+
+    <div class="nav-right nav-menu" v-if="user">
+      <span class="nav-item"> {{ user.name }} </span>
       <a href="/auth/logout" class="nav-item">
         Logout
       </a>

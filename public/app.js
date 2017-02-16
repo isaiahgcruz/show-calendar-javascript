@@ -8237,6 +8237,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
   props: {
@@ -8269,9 +8276,11 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('nav', {
     staticClass: "nav"
-  }, [_vm._m(0), _vm._v(" "), (_vm.user) ? _c('div', {
-    staticClass: "nav-right"
-  }, [_c('a', {
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), (_vm.user) ? _c('div', {
+    staticClass: "nav-right nav-menu"
+  }, [_c('span', {
+    staticClass: "nav-item"
+  }, [_vm._v(" " + _vm._s(_vm.user.name) + " ")]), _vm._v(" "), _c('a', {
     staticClass: "nav-item",
     attrs: {
       "href": "/auth/logout"
@@ -8283,6 +8292,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('a', {
     staticClass: "nav-item"
   }, [_vm._v("\n      Calendar\n    ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', {
+    staticClass: "nav-toggle"
+  }, [_c('span'), _vm._v(" "), _c('span'), _vm._v(" "), _c('span')])
 }]}
 module.exports.render._withStripped = true
 if (false) {
