@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar></navbar>
+    <navbar :user="user"></navbar>
     <section class="section">
       <div class="container">
         <div v-if="!user">
