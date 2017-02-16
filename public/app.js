@@ -6575,6 +6575,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -6582,8 +6585,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components : {
     Navbar: __WEBPACK_IMPORTED_MODULE_0__Navbar_vue___default.a,
   },
+
+  data() {
+    return {
+      user: false,
+    }
+  },
+
   ready() {
-    alert.log('READY!');
+
   },
 };
 
@@ -6593,7 +6603,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('navbar')], 1)
+  return _c('div', [_c('navbar'), _vm._v(" "), _c('div', {
+    staticClass: "container"
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -6722,7 +6734,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _vm._m(0)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('nav', {
-    staticClass: "nav"
+    staticClass: "nav has-shadow"
   }, [_c('div', {
     staticClass: "nav-left"
   }, [_c('a', {

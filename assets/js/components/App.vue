@@ -1,6 +1,9 @@
 <template>
   <div>
     <navbar></navbar>
+    <div class="container">
+
+    </div>
   </div>
 </template>
 
@@ -11,8 +14,15 @@
     components : {
       Navbar,
     },
+
+    data() {
+      return {
+        user: false,
+      }
+    },
+
     ready() {
-      alert.log('READY!');
+
     },
   }
 </script>
