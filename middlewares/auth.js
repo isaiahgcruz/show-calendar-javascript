@@ -19,7 +19,7 @@ passport.use(new GoogleStrategy({
         }
 
         if (!user) {
-          user = new User({ googleId: profile.id });
+          user = new User({ googleId: profile.id, name: profile.displayName });
           user.save((err) => {
             if (err) {
               console.log(err);
@@ -27,7 +27,13 @@ passport.use(new GoogleStrategy({
             return done(null, user);
           })
         } else {
-          return done(null, user);
+          user.name = profile.displayName;
+          user.save((err) => {
+            if (err) {
+              console.log(err);
+            }
+            return done(null, user);
+          })
         }
       });
   }
