@@ -1,13 +1,8 @@
 <template>
   <nav class="panel">
     <p class="panel-heading">
-      &nbsp;
+      My Shows
     </p>
-    <div class="panel-block">
-      <p class="control">
-        <input class="input" type="text" placeholder="Search">
-      </p>
-    </div>
     <a class="panel-block is-active" v-for="show in shows">
       {{ show.title }}
     </a>
@@ -19,7 +14,7 @@
     data() {
       return {
         shows: false,
-      }
+      };
     },
 
     created() {
@@ -27,6 +22,6 @@
         .then((response) => {
           this.shows = response.data;
         })
-    }
+    },
   }
 </script>
