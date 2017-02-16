@@ -7,7 +7,7 @@ const User = require('../models/user');
 /**
  * Get all episodes
  */
-router.get('/episodes', (req, res, next) => {
+router.get('/', (req, res, next) => {
   User.findById(req.user._id).populate('shows').exec((err, user) => {
     url = user.shows.map((show) => {
       return { url: `http://api.tvmaze.com/shows/${show.apiId}/episodes`, title: show.title }

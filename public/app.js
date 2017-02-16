@@ -8152,7 +8152,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   created() {
-    axios.get('/users/')
+    axios.get('/api/users/')
       .then((response) => {
         this.user = response.data;
       }).catch((response) => {

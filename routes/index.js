@@ -14,10 +14,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.use(auth);
-router.use('/users/', users);
+router.use('/api/users/', users);
 router.use(isAuthenticated);
-router.use('/shows/', shows);
-router.use('/', episodes);
+router.use('/api/shows/', shows);
+router.use('/api/episodes/', episodes);
 
 // here goes the protected routes
 router.get('/2', (req, res, next) => {
