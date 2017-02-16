@@ -6,6 +6,9 @@
         <div v-if="!user">
             <p class="control is-text-center">
               <a class="button is-large" href="/auth/google">
+                <span class="icon">
+                  <i class="fa fa-google"></i>
+                </span>
                 <span>Google Login</span>
               </a>
             </p>

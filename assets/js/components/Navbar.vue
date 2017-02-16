@@ -1,7 +1,10 @@
 <template>
   <nav class="nav">
     <div class="nav-left">
-      <a class="nav-item">
+      <a class="nav-item is-brand">
+        <span class="icon">
+          <i class="fa fa-calendar"></i>
+        </span> &nbsp;
         Calendar
       </a>
     </div>

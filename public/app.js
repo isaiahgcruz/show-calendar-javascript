@@ -27750,6 +27750,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -27821,6 +27824,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -28437,8 +28443,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "nav-left"
   }, [_c('a', {
-    staticClass: "nav-item"
-  }, [_vm._v("\n      Calendar\n    ")])])
+    staticClass: "nav-item is-brand"
+  }, [_c('span', {
+    staticClass: "icon"
+  }, [_c('i', {
+    staticClass: "fa fa-calendar"
+  })]), _vm._v("  \n      Calendar\n    ")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -28472,7 +28482,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": "/auth/google"
     }
-  }, [_c('span', [_vm._v("Google Login")])])])
+  }, [_c('span', {
+    staticClass: "icon"
+  }, [_c('i', {
+    staticClass: "fa fa-google"
+  })]), _vm._v(" "), _c('span', [_vm._v("Google Login")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
