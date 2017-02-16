@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav has-shadow">
+  <nav class="nav">
     <div class="nav-left">
       <a class="nav-item">
         Calendar

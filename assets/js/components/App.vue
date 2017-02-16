@@ -10,6 +10,7 @@
               </a>
             </p>
         </div>
+        <main-view v-else></main-view>
       </div>
     </section>
   </div>
@@ -17,10 +18,11 @@
 
 <script>
   import Navbar from './Navbar.vue';
+  import MainView from './Main.vue';
 
   export default {
     components : {
-      Navbar,
+      Navbar, MainView
     },
 
     data() {
