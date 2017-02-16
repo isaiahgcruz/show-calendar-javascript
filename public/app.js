@@ -8135,8 +8135,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -8217,15 +8215,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "section"
   }, [_c('div', {
     staticClass: "container"
-  }, [(!_vm.user) ? _c('div', [_c('p', {
-    staticClass: "control"
-  }, [_c('center', [_c('a', {
+  }, [(!_vm.user) ? _c('div', [_vm._m(0)]) : _vm._e()])])], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', {
+    staticClass: "control is-text-center"
+  }, [_c('a', {
     staticClass: "button is-large",
     attrs: {
       "href": "/auth/google"
     }
-  }, [_c('span', [_vm._v("Google Login")])])])], 1)]) : _vm._e()])])], 1)
-},staticRenderFns: []}
+  }, [_c('span', [_vm._v("Google Login")])])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

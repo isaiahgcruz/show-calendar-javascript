@@ -4,12 +4,10 @@
     <section class="section">
       <div class="container">
         <div v-if="!user">
-            <p class="control">
-              <center>
-                <a class="button is-large" href="/auth/google">
-                  <span>Google Login</span>
-                </a>
-              </center>
+            <p class="control is-text-center">
+              <a class="button is-large" href="/auth/google">
+                <span>Google Login</span>
+              </a>
             </p>
         </div>
       </div>
