@@ -101,6 +101,7 @@
               message: 'Show added successfully',
               class: 'is-success',
             });
+            this.$bus.$emit('refreshShows', null);
           }).catch((response) => {
             this.$bus.$emit('notify', {
               error: true,

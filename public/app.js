@@ -28164,6 +28164,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             message: 'Show added successfully',
             class: 'is-success',
           });
+          this.$bus.$emit('refreshShows', null);
         }).catch((response) => {
           this.$bus.$emit('notify', {
             error: true,
@@ -28223,13 +28224,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   created() {
-    axios.get('/api/shows')
-      .then((response) => {
-        this.shows = response.data;
+    this.refreshShows();
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      this.$bus.$on('refreshShows', () => {
+        this.refreshShows();
       })
+    })
   },
 
   methods: {
+    refreshShows() {
+      axios.get('/api/shows')
+        .then((response) => {
+          this.shows = response.data;
+        });
+    },
+
     deleteShow(show) {
       this.$bus.$emit('confirmModalOpen', {
         callback: this.deleteShowSuccessful,
@@ -28247,6 +28260,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         message: 'Show removed successfully',
         class: 'is-success',
       });
+      this.refreshShows();
     }
   },
 };

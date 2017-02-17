@@ -25,13 +25,25 @@
     },
 
     created() {
-      axios.get('/api/shows')
-        .then((response) => {
-          this.shows = response.data;
+      this.refreshShows();
+    },
+
+    mounted() {
+      this.$nextTick(() => {
+        this.$bus.$on('refreshShows', () => {
+          this.refreshShows();
         })
+      })
     },
 
     methods: {
+      refreshShows() {
+        axios.get('/api/shows')
+          .then((response) => {
+            this.shows = response.data;
+          });
+      },
+
       deleteShow(show) {
         this.$bus.$emit('confirmModalOpen', {
           callback: this.deleteShowSuccessful,
@@ -49,6 +61,7 @@
           message: 'Show removed successfully',
           class: 'is-success',
         });
+        this.refreshShows();
       }
     },
   }
