@@ -27732,6 +27732,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Navbar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Navbar_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Main_vue__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Modal_vue__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Modal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Modal_vue__);
 //
 //
 //
@@ -27753,13 +27755,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = {
   components : {
-    Navbar: __WEBPACK_IMPORTED_MODULE_0__Navbar_vue___default.a, MainView: __WEBPACK_IMPORTED_MODULE_1__Main_vue___default.a
+    Navbar: __WEBPACK_IMPORTED_MODULE_0__Navbar_vue___default.a, MainView: __WEBPACK_IMPORTED_MODULE_1__Main_vue___default.a, Modal: __WEBPACK_IMPORTED_MODULE_2__Modal_vue___default.a,
   },
 
   data() {
@@ -28509,7 +28513,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "user": _vm.user
     }
-  }), _vm._v(" "), _c('section', {
+  }), _vm._v(" "), _c('modal'), _vm._v(" "), _c('section', {
     staticClass: "section"
   }, [_c('div', {
     staticClass: "container"
@@ -28701,6 +28705,186 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-e6b5275a", module.exports)
+  }
+}
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(64),
+  /* template */
+  __webpack_require__(65),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/var/www/ise/javascript/shows/assets/js/components/Modal.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Modal.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2ea52b16", Component.options)
+  } else {
+    hotAPI.reload("data-v-2ea52b16", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+  data() {
+    return {
+      isLoading: false,
+      isModalToggled: false,
+      callback: function() {},
+      axiosConfig: false,
+      errors: false,
+      message: '',
+      title: '',
+    };
+  },
+
+  methods: {
+    toggleModal() {
+      this.isModalToggled = !this.isModalToggled;
+    },
+
+    yesModal(data) {
+      this.isLoading = true;
+      axios(this.axiosConfig)
+        .then((response) => {
+          this.isLoading = false;
+          this.isModalToggled = false;
+          this.callback(data);
+        }).catch((response) => {
+          this.isLoading = false;
+          this.errors = true;
+        })
+    },
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      this.$bus.$on('confirmModalOpen', (event) => {
+        this.isModalToggled = true;
+        this.callback = event.callback;
+        this.message = event.message;
+        this.title = event.title;
+        this.axiosConfig = event.axiosConfig;
+      });
+    })
+  },
+};
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal",
+    class: {
+      'is-active': _vm.isModalToggled
+    }
+  }, [_c('div', {
+    staticClass: "modal-background"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "modal-card"
+  }, [_c('header', {
+    staticClass: "modal-card-head"
+  }, [(_vm.errors) ? _c('p', {
+    staticClass: "modal-card-title"
+  }, [_vm._v("Error")]) : _c('p', {
+    staticClass: "modal-card-title"
+  }, [_vm._v(_vm._s(_vm.title))]), _vm._v(" "), _c('button', {
+    staticClass: "delete",
+    on: {
+      "click": _vm.toggleModal
+    }
+  })]), _vm._v(" "), (_vm.errors) ? _c('section', {
+    staticClass: "modal-card-body"
+  }, [_vm._v("\n      An error has occurred\n    ")]) : _c('section', {
+    staticClass: "modal-card-body"
+  }, [_vm._v("\n      " + _vm._s(_vm.message) + "\n    ")]), _vm._v(" "), (_vm.errors) ? _c('footer', {
+    staticClass: "modal-card-foot"
+  }, [_c('a', {
+    staticClass: "button",
+    class: {
+      'is-disabled': _vm.isLoading
+    },
+    on: {
+      "click": _vm.toggleModal
+    }
+  }, [_vm._v("Close")])]) : _c('footer', {
+    staticClass: "modal-card-foot"
+  }, [_c('a', {
+    staticClass: "button is-success",
+    class: {
+      'is-loading': _vm.isLoading
+    },
+    on: {
+      "click": _vm.yesModal
+    }
+  }, [_vm._v("Yes")]), _vm._v(" "), _c('a', {
+    staticClass: "button",
+    class: {
+      'is-disabled': _vm.isLoading
+    },
+    on: {
+      "click": _vm.toggleModal
+    }
+  }, [_vm._v("No")])])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2ea52b16", module.exports)
   }
 }
 

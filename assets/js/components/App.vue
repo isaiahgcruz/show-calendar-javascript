@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <navbar :user="user"></navbar>
+    <modal></modal>
     <section class="section">
       <div class="container">
         <div v-if="!user">
@@ -22,10 +23,11 @@
 <script>
   import Navbar from './Navbar.vue';
   import MainView from './Main.vue';
+  import Modal from './Modal.vue';
 
   export default {
     components : {
-      Navbar, MainView
+      Navbar, MainView, Modal,
     },
 
     data() {
