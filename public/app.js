@@ -28203,6 +28203,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
   data() {
@@ -28230,9 +28237,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('p', {
     staticClass: "panel-heading"
   }, [_vm._v("\n    My Shows\n  ")]), _vm._v(" "), _vm._l((_vm.shows), function(show) {
-    return _c('a', {
-      staticClass: "panel-block is-active"
-    }, [_vm._v("\n    " + _vm._s(show.title) + "\n  ")])
+    return _c('span', {
+      staticClass: "panel-block"
+    }, [_c('div', {
+      staticClass: "column is-paddingless is-11-mobile"
+    }, [_vm._v("\n      " + _vm._s(show.title) + "\n    ")]), _vm._v(" "), _c('div', {
+      staticClass: "column is-paddingless is-1"
+    }, [_c('span', {
+      staticClass: "icon is-small is-pointer",
+      on: {
+        "click": function($event) {
+          _vm.deleteShow(show)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-remove"
+    })])])])
   })], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
