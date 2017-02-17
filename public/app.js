@@ -28032,6 +28032,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     hit () {
       this.openDropdown = false
       this.successCallback(this.results[this.currentIndex])
+    },
+
+    /**
+     * Key esc method
+     */
+    reset () {
+      this.currentIndex = 0;
     }
   }
 };

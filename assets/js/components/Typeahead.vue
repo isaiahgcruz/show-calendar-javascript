@@ -150,6 +150,13 @@
       hit () {
         this.openDropdown = false
         this.successCallback(this.results[this.currentIndex])
+      },
+
+      /**
+       * Key esc method
+       */
+      reset () {
+        this.currentIndex = 0;
       }
     }
   }
