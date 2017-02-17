@@ -30,5 +30,26 @@
           this.shows = response.data;
         })
     },
+
+    methods: {
+      deleteShow(show) {
+        this.$bus.$emit('confirmModalOpen', {
+          callback: this.deleteShowSuccessful,
+          message: `Are you sure you want to delete ${show.title}?`,
+          title: 'Delete Show',
+          axiosConfig: {
+            method: 'delete',
+            url: `/api/shows/${show._id}`,
+          },
+        })
+      },
+
+      deleteShowSuccessful() {
+        this.$bus.$emit('notify', {
+          message: 'Show removed successfully',
+          class: 'is-success',
+        });
+      }
+    },
   }
 </script>
