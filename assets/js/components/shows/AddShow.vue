@@ -97,6 +97,14 @@
             this.isLoading = false;
             this.result = false;
             this.toggleModal();
+            this.$bus.$emit('notify', {
+              message: 'Show added successfully',
+              class: 'is-success',
+            });
+          }).catch((response) => {
+            this.$bus.$emit('notify', {
+              error: true,
+            });
           })
       }
     },

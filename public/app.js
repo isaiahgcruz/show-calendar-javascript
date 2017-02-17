@@ -27790,6 +27790,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shows_Panel_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__shows_Panel_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shows_AddShow_vue__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shows_AddShow_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__shows_AddShow_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Notification_vue__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Notification_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Notification_vue__);
 //
 //
 //
@@ -27807,13 +27809,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = {
   components: {
-    ShowsPanel: __WEBPACK_IMPORTED_MODULE_0__shows_Panel_vue___default.a, AddShow: __WEBPACK_IMPORTED_MODULE_1__shows_AddShow_vue___default.a,
+    ShowsPanel: __WEBPACK_IMPORTED_MODULE_0__shows_Panel_vue___default.a, AddShow: __WEBPACK_IMPORTED_MODULE_1__shows_AddShow_vue___default.a, Notification: __WEBPACK_IMPORTED_MODULE_2__Notification_vue___default.a,
   },
 };
 
@@ -28151,6 +28156,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           this.isLoading = false;
           this.result = false;
           this.toggleModal();
+          this.$bus.$emit('notify', {
+            message: 'Show added successfully',
+            class: 'is-success',
+          });
+        }).catch((response) => {
+          this.$bus.$emit('notify', {
+            error: true,
+          });
         })
     }
   },
@@ -28237,13 +28250,13 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "container"
-  }, [_c('h1', {
+  }, [_c('notification'), _vm._v(" "), _c('h1', {
     staticClass: "title"
   }, [_vm._v("Home")]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
     staticClass: "columns"
   }, [_c('div', {
     staticClass: "column is-one-quarter"
-  }, [_c('shows-panel'), _vm._v(" "), _c('hr'), _vm._v(" "), _c('add-show')], 1), _vm._v(" "), _vm._m(0)])])
+  }, [_c('shows-panel'), _vm._v(" "), _c('hr'), _vm._v(" "), _c('add-show')], 1), _vm._v(" "), _vm._m(0)])], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "column is-three-quarters"
@@ -28553,14 +28566,123 @@ window.axios.defaults.headers.common = {
 
 
 
-new Vue({
-  el: '#app',
+const bus = new Vue();
+Vue.prototype.$bus = bus;
+
+const app = new Vue({
   render: h => h(__WEBPACK_IMPORTED_MODULE_1__components_App_vue___default.a),
   template: '<App/>',
   components: {
     App: __WEBPACK_IMPORTED_MODULE_1__components_App_vue___default.a
+  },
+}).$mount('#app');
+
+/***/ }),
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(61),
+  /* template */
+  __webpack_require__(62),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/var/www/ise/javascript/shows/assets/js/components/Notification.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Notification.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e6b5275a", Component.options)
+  } else {
+    hotAPI.reload("data-v-e6b5275a", Component.options)
   }
-})
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+  data() {
+    return {
+      message: '',
+      className: '',
+      showNotification: false,
+    };
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      this.$bus.$on('notify', (event) => {
+        if (!event.error) {
+          this.message = event.message;
+          this.className = event.class;
+        } else {
+          this.message = 'An error occurred';
+          this.className = 'is-danger';
+        }
+        this.showNotification = true;
+      });
+    })
+  },
+};
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return (_vm.showNotification) ? _c('div', {
+    class: ['notification', _vm.className]
+  }, [_c('button', {
+    staticClass: "delete",
+    on: {
+      "click": function($event) {
+        _vm.showNotification = false
+      }
+    }
+  }), _vm._v("\n  " + _vm._s(_vm.message) + "\n")]) : _vm._e()
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-e6b5275a", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

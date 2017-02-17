@@ -10,11 +10,13 @@ window.axios.defaults.headers.common = {
 
 import App from './components/App.vue';
 
-new Vue({
-  el: '#app',
+const bus = new Vue();
+Vue.prototype.$bus = bus;
+
+const app = new Vue({
   render: h => h(App),
   template: '<App/>',
   components: {
     App
-  }
-})
+  },
+}).$mount('#app');
