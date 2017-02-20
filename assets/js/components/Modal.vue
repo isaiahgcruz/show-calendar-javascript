@@ -35,6 +35,7 @@
         errors: false,
         message: '',
         title: '',
+        data: {},
       };
     },
 
@@ -65,6 +66,7 @@
           this.message = event.message;
           this.title = event.title;
           this.axiosConfig = event.axiosConfig;
+          this.data = event.data;
         });
       })
     },

@@ -3,16 +3,18 @@
     <p class="panel-heading">
       My Shows
     </p>
-    <span class="panel-block" v-for="show in shows">
-      <div class="column is-paddingless is-11-mobile">
-        {{ show.title }}
-      </div>
-      <div class="column is-paddingless is-1">
-        <span class="icon is-small is-pointer" @click="deleteShow(show)">
-          <i class="fa fa-remove"></i>
-        </span>
-      </div>
-    </span>
+    <transition-group name="list">
+      <span class="panel-block" v-for="show in shows" v-bind:key="show">
+        <div class="column is-paddingless is-11-mobile">
+          {{ show.title }}
+        </div>
+        <div class="column is-paddingless is-1">
+          <span class="icon is-small is-pointer" @click="deleteShow(show)">
+            <i class="fa fa-remove"></i>
+          </span>
+        </div>
+      </span>
+    </transition-group>
   </nav>
 </template>
 
@@ -20,7 +22,7 @@
   export default {
     data() {
       return {
-        shows: false,
+        shows: [],
       };
     },
 
@@ -40,7 +42,24 @@
       refreshShows() {
         axios.get('/api/shows')
           .then((response) => {
-            this.shows = response.data;
+            if (this.shows.length == 0) {
+              this.shows = response.data;
+            } else {
+              let diff = []
+              if (this.shows.length > response.data.length) {
+                diff = _.differenceBy(this.shows, response.data, '_id');
+              } else {
+                diff = _.differenceBy(response.data, this.shows, '_id');
+              }
+              const diffIndex = _.findIndex(this.shows, (show) => {
+                return show._id == diff[0]._id;
+              });
+              if (diffIndex >= 0) {
+                this.shows.splice(diffIndex, 1);
+              } else {
+                this.shows.push(diff[0]);
+              }
+            }
           });
       },
 
@@ -56,7 +75,7 @@
         })
       },
 
-      deleteShowSuccessful() {
+      deleteShowSuccessful(show) {
         this.$bus.$emit('notify', {
           message: 'Show removed successfully',
           class: 'is-success',

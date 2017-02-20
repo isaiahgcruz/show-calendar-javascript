@@ -6344,3 +6344,10 @@ label.panel-block {
 
 .is-pointer {
   cursor: pointer; }
+
+.list-enter-active, .list-leave-active {
+  transition: all 1s; }
+
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateX(30px); }
