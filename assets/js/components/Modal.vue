@@ -1,27 +1,29 @@
 <template>
-  <div class="modal" :class="{ 'is-active': isModalToggled }">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title" v-if="errors">Error</p>
-        <p class="modal-card-title" v-else>{{ title }}</p>
-        <button class="delete" @click="toggleModal"></button>
-      </header>
-      <section class="modal-card-body" v-if="errors">
-        An error has occurred
-      </section>
-      <section class="modal-card-body" v-else>
-        {{ message }}
-      </section>
-      <footer class="modal-card-foot" v-if="errors">
-        <a class="button" :class="{ 'is-disabled': isLoading }" @click="toggleModal">Close</a>
-      </footer>
-      <footer class="modal-card-foot" v-else>
-        <a class="button is-success" :class="{ 'is-loading': isLoading }" @click="yesModal">Yes</a>
-        <a class="button" :class="{ 'is-disabled': isLoading }" @click="toggleModal">No</a>
-      </footer>
+  <transition name="fade">
+    <div class="modal" :class="{ 'is-active': isModalToggled }" v-if="isModalToggled">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title" v-if="errors">Error</p>
+          <p class="modal-card-title" v-else>{{ title }}</p>
+          <button class="delete" @click="toggleModal"></button>
+        </header>
+        <section class="modal-card-body" v-if="errors">
+          An error has occurred
+        </section>
+        <section class="modal-card-body" v-else>
+          {{ message }}
+        </section>
+        <footer class="modal-card-foot" v-if="errors">
+          <a class="button" :class="{ 'is-disabled': isLoading }" @click="toggleModal">Close</a>
+        </footer>
+        <footer class="modal-card-foot" v-else>
+          <a class="button is-success" :class="{ 'is-loading': isLoading }" @click="yesModal">Yes</a>
+          <a class="button" :class="{ 'is-disabled': isLoading }" @click="toggleModal">No</a>
+        </footer>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>

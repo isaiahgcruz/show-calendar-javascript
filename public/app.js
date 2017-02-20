@@ -27927,6 +27927,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
   data() {
@@ -28036,6 +28038,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -28250,6 +28254,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Typeahead_vue__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Typeahead_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Typeahead_vue__);
+//
+//
 //
 //
 //
@@ -28549,7 +28555,11 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [(_vm.result) ? _c('div', {
+  return _c('div', [_c('transition', {
+    attrs: {
+      "name": "fade"
+    }
+  }, [(_vm.result && _vm.isModalToggled) ? _c('div', {
     staticClass: "modal",
     class: {
       'is-active': _vm.isModalToggled
@@ -28569,7 +28579,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })]), _vm._v(" "), _c('section', {
     staticClass: "modal-card-body"
-  }, [_vm._v("\n        Are you sure you want to add this show?\n        "), _c('div', {
+  }, [_vm._v("\n          Are you sure you want to add this show?\n          "), _c('div', {
     staticClass: "box"
   }, [_c('article', {
     staticClass: "media"
@@ -28585,7 +28595,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "media-content"
   }, [_c('div', {
     staticClass: "content"
-  }, [_c('p', [_c('strong', [_vm._v(_vm._s(_vm.result.show.name))]), _vm._v(" "), _c('br'), _vm._v("\n                  " + _vm._s(_vm.showSummary) + "\n                ")])])])])])]), _vm._v(" "), _c('footer', {
+  }, [_c('p', [_c('strong', [_vm._v(_vm._s(_vm.result.show.name))]), _vm._v(" "), _c('br'), _vm._v("\n                    " + _vm._s(_vm.showSummary) + "\n                  ")])])])])])]), _vm._v(" "), _c('footer', {
     staticClass: "modal-card-foot"
   }, [_c('a', {
     staticClass: "button is-success",
@@ -28603,7 +28613,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.toggleModal
     }
-  }, [_vm._v("No")])])])]) : _vm._e(), _vm._v(" "), _c('typeahead', {
+  }, [_vm._v("No")])])])]) : _vm._e()]), _vm._v(" "), _c('typeahead', {
     attrs: {
       "api-uri": "http://api.tvmaze.com/search/shows?q=",
       "template-partial": _vm.templatePartial,
@@ -28627,7 +28637,11 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return _c('transition', {
+    attrs: {
+      "name": "fade"
+    }
+  }, [(_vm.isModalToggled) ? _c('div', {
     staticClass: "modal",
     class: {
       'is-active': _vm.isModalToggled
@@ -28649,9 +28663,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })]), _vm._v(" "), (_vm.errors) ? _c('section', {
     staticClass: "modal-card-body"
-  }, [_vm._v("\n      An error has occurred\n    ")]) : _c('section', {
+  }, [_vm._v("\n        An error has occurred\n      ")]) : _c('section', {
     staticClass: "modal-card-body"
-  }, [_vm._v("\n      " + _vm._s(_vm.message) + "\n    ")]), _vm._v(" "), (_vm.errors) ? _c('footer', {
+  }, [_vm._v("\n        " + _vm._s(_vm.message) + "\n      ")]), _vm._v(" "), (_vm.errors) ? _c('footer', {
     staticClass: "modal-card-foot"
   }, [_c('a', {
     staticClass: "button",
@@ -28679,7 +28693,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.toggleModal
     }
-  }, [_vm._v("No")])])])])
+  }, [_vm._v("No")])])])]) : _vm._e()])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -28860,7 +28874,11 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (_vm.showNotification) ? _c('div', {
+  return _c('transition', {
+    attrs: {
+      "name": "fade"
+    }
+  }, [(_vm.showNotification) ? _c('div', {
     class: ['notification', _vm.className]
   }, [_c('button', {
     staticClass: "delete",
@@ -28869,7 +28887,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.showNotification = false
       }
     }
-  }), _vm._v("\n  " + _vm._s(_vm.message) + "\n")]) : _vm._e()
+  }), _vm._v("\n    " + _vm._s(_vm.message) + "\n  ")]) : _vm._e()])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
