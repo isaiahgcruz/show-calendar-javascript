@@ -3,7 +3,7 @@
     <p class="panel-heading">
       My Shows
     </p>
-    <transition-group name="list">
+    <transition-group v-bind:name="panelTransition">
       <span class="panel-block" v-for="show in shows" v-bind:key="show">
         <div class="column is-paddingless is-11-mobile">
           {{ show.title }}
@@ -23,6 +23,7 @@
     data() {
       return {
         shows: [],
+        panelTransition: 'fade',
       };
     },
 
@@ -45,6 +46,7 @@
             if (this.shows.length == 0) {
               this.shows = response.data;
             } else {
+              this.panelTransition = 'list';
               let diff = []
               if (this.shows.length > response.data.length) {
                 diff = _.differenceBy(this.shows, response.data, '_id');

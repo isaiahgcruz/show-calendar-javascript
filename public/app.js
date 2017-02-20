@@ -28420,6 +28420,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data() {
     return {
       shows: [],
+      panelTransition: 'fade',
     };
   },
 
@@ -28442,6 +28443,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           if (this.shows.length == 0) {
             this.shows = response.data;
           } else {
+            this.panelTransition = 'list';
             let diff = []
             if (this.shows.length > response.data.length) {
               diff = _.differenceBy(this.shows, response.data, '_id');
@@ -28494,7 +28496,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel-heading"
   }, [_vm._v("\n    My Shows\n  ")]), _vm._v(" "), _c('transition-group', {
     attrs: {
-      "name": "list"
+      "name": _vm.panelTransition
     }
   }, _vm._l((_vm.shows), function(show) {
     return _c('span', {
