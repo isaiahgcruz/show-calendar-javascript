@@ -27836,7 +27836,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   data() {
     return {
-      user: false,
+      user: {},
     }
   },
 
@@ -28856,7 +28856,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "section"
   }, [_c('div', {
     staticClass: "container"
-  }, [(!_vm.user) ? _c('div', [_vm._m(0)]) : _c('main-view')], 1)])], 1)
+  }, [(!_vm.user) ? _c('div', [_vm._m(0)]) : _vm._e(), _vm._v(" "), (_vm.user._id) ? _c('main-view') : _vm._e()], 1)])], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', {
     staticClass: "control is-text-center"

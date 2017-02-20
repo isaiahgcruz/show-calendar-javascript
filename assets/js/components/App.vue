@@ -14,7 +14,7 @@
               </a>
             </p>
         </div>
-        <main-view v-else></main-view>
+        <main-view v-if="user._id"></main-view>
       </div>
     </section>
   </div>
@@ -32,7 +32,7 @@
 
     data() {
       return {
-        user: false,
+        user: {},
       }
     },
 
