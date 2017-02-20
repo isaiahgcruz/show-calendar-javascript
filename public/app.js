@@ -28176,7 +28176,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
      */
     inputText (val) {
       this.queryString = val
-    }
+    },
+
+    /**
+     * Empties result if query string is empty
+     */
+    queryString (val) {
+      if (val.length <= 0) {
+        this.results = {};
+      }
+    },
+
   },
 
   /**
@@ -28357,6 +28367,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         .then((response) => {
           this.isLoading = false;
           this.result = false;
+          this.typeaheadText = '';
           this.toggleModal();
           this.$bus.$emit('notify', {
             message: 'Show added successfully',

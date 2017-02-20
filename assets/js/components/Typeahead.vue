@@ -92,7 +92,17 @@
        */
       inputText (val) {
         this.queryString = val
-      }
+      },
+
+      /**
+       * Empties result if query string is empty
+       */
+      queryString (val) {
+        if (val.length <= 0) {
+          this.results = {};
+        }
+      },
+
     },
 
     /**

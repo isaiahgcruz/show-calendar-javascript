@@ -98,6 +98,7 @@
           .then((response) => {
             this.isLoading = false;
             this.result = false;
+            this.typeaheadText = '';
             this.toggleModal();
             this.$bus.$emit('notify', {
               message: 'Show added successfully',
