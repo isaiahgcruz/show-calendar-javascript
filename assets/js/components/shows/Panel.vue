@@ -83,6 +83,7 @@
           class: 'is-success',
         });
         this.refreshShows();
+        this.$bus.$emit('refreshEpisodes', null);
       }
     },
   }

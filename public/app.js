@@ -27864,6 +27864,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shows_AddShow_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__shows_AddShow_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Notification_vue__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Notification_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Notification_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__episodes_Upcoming_vue__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__episodes_Upcoming_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__episodes_Upcoming_vue__);
 //
 //
 //
@@ -27883,6 +27885,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -27890,7 +27893,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = {
   components: {
-    ShowsPanel: __WEBPACK_IMPORTED_MODULE_0__shows_Panel_vue___default.a, AddShow: __WEBPACK_IMPORTED_MODULE_1__shows_AddShow_vue___default.a, Notification: __WEBPACK_IMPORTED_MODULE_2__Notification_vue___default.a,
+    ShowsPanel: __WEBPACK_IMPORTED_MODULE_0__shows_Panel_vue___default.a, AddShow: __WEBPACK_IMPORTED_MODULE_1__shows_AddShow_vue___default.a, Notification: __WEBPACK_IMPORTED_MODULE_2__Notification_vue___default.a, Upcoming: __WEBPACK_IMPORTED_MODULE_3__episodes_Upcoming_vue___default.a,
   },
 };
 
@@ -28374,6 +28377,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             class: 'is-success',
           });
           this.$bus.$emit('refreshShows', null);
+          this.$bus.$emit('refreshEpisodes', null);
         }).catch((response) => {
           this.$bus.$emit('notify', {
             error: true,
@@ -28491,6 +28495,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         class: 'is-success',
       });
       this.refreshShows();
+      this.$bus.$emit('refreshEpisodes', null);
     }
   },
 };
@@ -28550,14 +28555,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "columns"
   }, [_c('div', {
     staticClass: "column is-one-quarter"
-  }, [_c('shows-panel'), _vm._v(" "), _c('hr'), _vm._v(" "), _c('add-show')], 1), _vm._v(" "), _vm._m(0)])], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  }, [_c('shows-panel'), _vm._v(" "), _c('hr'), _vm._v(" "), _c('add-show')], 1), _vm._v(" "), _c('div', {
     staticClass: "column is-three-quarters"
-  }, [_c('h2', {
-    staticClass: "title"
-  }, [_vm._v("Episodes")])])
-}]}
+  }, [_c('upcoming')], 1)])], 1)
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -28980,6 +28981,144 @@ const app = new Vue({
     App: __WEBPACK_IMPORTED_MODULE_1__components_App_vue___default.a
   },
 }).$mount('#app');
+
+/***/ }),
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(67),
+  /* template */
+  __webpack_require__(68),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/var/www/ise/javascript/shows/assets/js/components/episodes/Upcoming.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Upcoming.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1b03147b", Component.options)
+  } else {
+    hotAPI.reload("data-v-1b03147b", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+  data() {
+    return {
+      episodes: [],
+      upcomingEpisodes: [],
+      isLoading: false
+    }
+  },
+
+  created() {
+    this.refreshEpisodes();
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      this.$bus.$on('refreshEpisodes', () => {
+        this.refreshEpisodes();
+      })
+    })
+  },
+
+  methods: {
+    refreshEpisodes() {
+      this.isLoading = true;
+      axios.get('/api/episodes')
+        .then((response) => {
+          this.episodes = response.data;
+          this.getUpcomingEpisodes();
+          this.isLoading = false;
+        }).catch((response) => {
+          this.$bus.$emit('notify', {
+            error: true,
+          });
+          this.isLoading = false;
+        })
+    },
+
+    getUpcomingEpisodes() {
+      const tsToday = Math.floor(new Date().getTime()/1000);
+      this.upcomingEpisodes = this.episodes.filter((el) => {
+        if (Math.floor(new Date(el.timestamp).getTime()/1000) >= tsToday) {
+          return el;
+        }
+      }).sort((a, b) => {
+        return Math.floor(new Date(a.timestamp).getTime()/1000) - Math.floor(new Date(b.timestamp).getTime()/1000);
+      })
+    }
+  },
+};
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "content"
+  }, [_c('h2', [_vm._v("Upcoming Episodes")]), _vm._v(" "), (_vm.isLoading && _vm.upcomingEpisodes.length == 0) ? _c('div', [_vm._v("Loading...")]) : _vm._e(), _vm._v(" "), _c('transition-group', {
+    attrs: {
+      "name": "fade"
+    }
+  }, _vm._l((_vm.upcomingEpisodes), function(ep) {
+    return (_vm.upcomingEpisodes.length) ? _c('div', {
+      key: ep
+    }, [_vm._v("\n      " + _vm._s(ep.title) + "\n    ")]) : _vm._e()
+  }))], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-1b03147b", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

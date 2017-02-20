@@ -105,6 +105,7 @@
               class: 'is-success',
             });
             this.$bus.$emit('refreshShows', null);
+            this.$bus.$emit('refreshEpisodes', null);
           }).catch((response) => {
             this.$bus.$emit('notify', {
               error: true,
