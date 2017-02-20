@@ -17,14 +17,17 @@
             :placeholder="placeholder"
             >
         </div>
-        <a
+      <transition-group name="slide-fade">
+      <a
           v-for="(result, index) in results"
           v-if="index <= 5"
           class="panel-block"
           v-bind:class="{'is-active' : isActive(index)}"
+          v-bind:key="result"
           @mousemove="currentIndex = index"
           @mousedown.prevent="hit"
           ><partial :result="result" :templatePartial="templatePartial"></partial></a>
+      </transition-group>
       </div>
     </p>
   </div>

@@ -1,8 +1,10 @@
 <template>
-  <div v-bind:class="['notification', className ]" v-if="showNotification">
-    <button class="delete" @click="showNotification = false"></button>
-    {{ message }}
-  </div>
+  <transition name="fade">
+    <div v-bind:class="['notification', className ]" v-if="showNotification">
+      <button class="delete" @click="showNotification = false"></button>
+      {{ message }}
+    </div>
+  </transition>
 </template>
 
 <script>

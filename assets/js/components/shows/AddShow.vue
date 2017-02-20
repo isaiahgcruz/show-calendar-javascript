@@ -1,39 +1,41 @@
 <template>
   <div>
-    <div class="modal" :class="{ 'is-active': isModalToggled }" v-if="result">
-      <div class="modal-background"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title">Add Show</p>
-          <button class="delete" @click="toggleModal"></button>
-        </header>
-        <section class="modal-card-body">
-          Are you sure you want to add this show?
-          <div class="box">
-            <article class="media">
-              <figure class="media-left">
-                <p class="image is-64x64">
-                  <img v-if="result.show.image" :src="result.show.image.medium">
-                </p>
-              </figure>
-              <div class="media-content">
-                <div class="content">
-                  <p>
-                    <strong>{{ result.show.name }}</strong>
-                    <br>
-                    {{ showSummary }}
+    <transition name="fade">
+      <div class="modal" :class="{ 'is-active': isModalToggled }" v-if="result && isModalToggled">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Add Show</p>
+            <button class="delete" @click="toggleModal"></button>
+          </header>
+          <section class="modal-card-body">
+            Are you sure you want to add this show?
+            <div class="box">
+              <article class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img v-if="result.show.image" :src="result.show.image.medium">
                   </p>
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong>{{ result.show.name }}</strong>
+                      <br>
+                      {{ showSummary }}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </article>
-          </div>
-        </section>
-        <footer class="modal-card-foot">
-          <a class="button is-success" :class="{ 'is-loading': isLoading }" @click="addShow">Yes</a>
-          <a class="button" :class="{ 'is-disabled': isLoading }" @click="toggleModal">No</a>
-        </footer>
+              </article>
+            </div>
+          </section>
+          <footer class="modal-card-foot">
+            <a class="button is-success" :class="{ 'is-loading': isLoading }" @click="addShow">Yes</a>
+            <a class="button" :class="{ 'is-disabled': isLoading }" @click="toggleModal">No</a>
+          </footer>
+        </div>
       </div>
-    </div>
+    </transition>
 
     <typeahead
       api-uri="http://api.tvmaze.com/search/shows?q="

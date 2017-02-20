@@ -6344,3 +6344,26 @@ label.panel-block {
 
 .is-pointer {
   cursor: pointer; }
+
+.list-enter-active, .list-leave-active {
+  transition: all 1s; }
+
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateX(30px); }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s; }
+
+.fade-enter, .fade-leave-to {
+  opacity: 0; }
+
+.slide-fade-enter-active {
+  transition: all .3s ease; }
+
+.slide-fade-leave-active {
+  transition: all .3s ease; }
+
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateY(-10px);
+  opacity: 0; }
