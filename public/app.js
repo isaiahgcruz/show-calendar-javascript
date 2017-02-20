@@ -28114,6 +28114,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -28753,8 +28756,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.reset($event)
       }]
     }
-  })]), _vm._v(" "), _vm._l((_vm.results), function(result, index) {
+  })]), _vm._v(" "), _c('transition-group', {
+    attrs: {
+      "name": "slide-fade"
+    }
+  }, _vm._l((_vm.results), function(result, index) {
     return (index <= 5) ? _c('a', {
+      key: result,
       staticClass: "panel-block",
       class: {
         'is-active': _vm.isActive(index)
@@ -28774,7 +28782,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "templatePartial": _vm.templatePartial
       }
     })], 1) : _vm._e()
-  })], 2), _vm._v(" "), _c('p')])
+  }))], 1), _vm._v(" "), _c('p')])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
