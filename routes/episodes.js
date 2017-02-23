@@ -24,7 +24,7 @@ router.get('/', (req, res, next) => {
               return el;
             }
           })
-          .map((el) => { return { title: `S${el.season}E${el.number} ${task.title}`, timestamp: el.airstamp } });
+          .map((el) => { return { title: `S${('0' + el.season).slice(-2)}E${('0' + el.number).slice(-2)} ${task.title}`, timestamp: el.airstamp } });
         episodes.push.apply(episodes, latestSeasonEpisodes)
         done();
       })
