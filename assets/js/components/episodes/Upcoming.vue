@@ -23,10 +23,6 @@
       }
     },
 
-    created() {
-      this.refreshEpisodes();
-    },
-
     mounted() {
       this.$nextTick(() => {
         this.$bus.$on('refreshEpisodes', () => {

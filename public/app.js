@@ -28327,10 +28327,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
 
-  created() {
-    this.refreshEpisodes();
-  },
-
   mounted() {
     this.$nextTick(() => {
       this.$bus.$on('refreshEpisodes', () => {
@@ -28598,6 +28594,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
               this.shows.push(diff[0]);
             }
           }
+          this.$bus.$emit('refreshEpisodes', null);
         });
     },
 
@@ -28619,7 +28616,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         class: 'is-success',
       });
       this.refreshShows();
-      this.$bus.$emit('refreshEpisodes', null);
     }
   },
 };
