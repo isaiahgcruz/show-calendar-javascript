@@ -1,10 +1,13 @@
 <template>
   <div class="content">
     <h2>Upcoming Episodes</h2>
-    <div v-if="isLoading && upcomingEpisodes.length == 0">Loading...</div>
+    <div v-if="isLoading && groups.length == 0">Loading...</div>
     <transition-group name="fade">
-      <div v-for="ep in upcomingEpisodes" v-if="upcomingEpisodes.length" v-bind:key="ep">
-        {{ ep.title }}
+      <div v-for="group in groups" v-if="groups.length" v-bind:key="group" class="content">
+        <h5>{{ group.date }}</h5>
+        <ul>
+          <li v-for="ep in group.episodes">{{ ep }}</li>
+        </ul>
       </div>
     </transition-group>
   </div>
@@ -18,10 +21,6 @@
         upcomingEpisodes: [],
         isLoading: false
       }
-    },
-
-    created() {
-      this.refreshEpisodes();
     },
 
     mounted() {
@@ -59,5 +58,22 @@
         })
       }
     },
+
+    computed: {
+      groups() {
+        const groups = [];
+        this.upcomingEpisodes.map((el) => {
+          if (groups.length > 0 && groups[groups.length-1]['date'] === moment(el.timestamp).format('MMM Do YYYY')) {
+            groups[groups.length-1].episodes.push(el.title);
+          } else {
+            groups.push({
+              date: moment(el.timestamp).format('MMM Do YYYY'),
+              episodes: [ el.title ],
+            })
+          }
+        })
+        return groups;
+      }
+    }
   }
 </script>

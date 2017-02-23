@@ -62,6 +62,7 @@
                 this.shows.push(diff[0]);
               }
             }
+            this.$bus.$emit('refreshEpisodes', null);
           });
       },
 
@@ -83,7 +84,6 @@
           class: 'is-success',
         });
         this.refreshShows();
-        this.$bus.$emit('refreshEpisodes', null);
       }
     },
   }
