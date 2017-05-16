@@ -9,6 +9,8 @@
         <shows-panel></shows-panel>
         <hr>
         <add-show></add-show>
+        <hr>
+        <calendar></calendar>
       </div>
       <div class="column is-three-quarters">
         <upcoming></upcoming>
@@ -22,10 +24,15 @@
   import AddShow from './shows/AddShow.vue';
   import Notification from './Notification.vue';
   import Upcoming from './episodes/Upcoming.vue';
+  import Calendar from './calendars/Calendar.vue';
 
   export default {
     components: {
-      ShowsPanel, AddShow, Notification, Upcoming,
+      ShowsPanel,
+      AddShow,
+      Notification,
+      Upcoming,
+      Calendar,
     },
-  }
+  };
 </script>
