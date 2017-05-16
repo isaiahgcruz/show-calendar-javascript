@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const User = new Schema({
   googleId: String,
   name: String,
+  accessToken: String,
 
   shows: [{ type: Schema.Types.ObjectId, ref: 'Show' }],
 });

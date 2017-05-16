@@ -19,7 +19,7 @@ passport.use(new GoogleStrategy({
       }
 
       if (!user) {
-        user = new User({ googleId: profile.id, name: profile.displayName });
+        user = new User({ googleId: profile.id, name: profile.displayName, accessToken });
         user.save((err) => {
           if (err) {
             console.log(err);
@@ -28,6 +28,7 @@ passport.use(new GoogleStrategy({
         });
       } else {
         user.name = profile.displayName;
+        user.accessToken = accessToken;
         user.save((err) => {
           if (err) {
             console.log(err);
