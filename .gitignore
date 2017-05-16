@@ -28,3 +28,8 @@ node_modules
 
 # Debug log from npm
 npm-debug.log
+
+# public files
+public/app.js
+public/app.css
+public/fonts/*
