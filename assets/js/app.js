@@ -21,6 +21,6 @@ const app = new Vue({
   render: h => h(App),
   template: '<App/>',
   components: {
-    App
+    App,
   },
 }).$mount('#app');

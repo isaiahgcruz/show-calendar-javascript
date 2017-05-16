@@ -17,13 +17,13 @@ router.get('/auth/google',
 //   which, in this example, will redirect the user to the home page.
 router.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
+  (req, res) => {
     res.redirect('/');
   });
 
 router.get('/auth/logout/', (req, res, next) => {
   req.logout();
   res.redirect('/');
-})
+});
 
 module.exports = router;

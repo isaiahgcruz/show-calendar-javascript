@@ -22,9 +22,9 @@ router.post('/', (req, res, next) => {
         apiId: req.body.showId,
         title: req.body.title,
       });
-      show.save()
+      show.save();
     }
-    User.update({ _id: req.user._id }, { $addToSet: { shows: show._id }}, {}, (err, ret) => {
+    User.update({ _id: req.user._id }, { $addToSet: { shows: show._id } }, {}, (err, ret) => {
       res.json(ret);
     });
   });
@@ -34,7 +34,7 @@ router.post('/', (req, res, next) => {
  * Delete a show to the user
  */
 router.delete('/:showId', (req, res, next) => {
-  User.update({ _id: req.user._id }, { $pull: { shows: req.params.showId }}, {}, (err, ret) => {
+  User.update({ _id: req.user._id }, { $pull: { shows: req.params.showId } }, {}, (err, ret) => {
     res.json(ret);
   });
 });

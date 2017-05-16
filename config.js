@@ -16,7 +16,7 @@ const config = {
       clientId: '531939707305-tbvaemibt7lqm246tn9gmoaboqd32787.apps.googleusercontent.com',
       clientSecret: 'rxqcJo1EnAK_yvtsLJ131mSR',
     },
-  }
+  },
 };
 
 if (process.env.NODE_ENV === 'production') {
