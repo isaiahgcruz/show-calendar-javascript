@@ -9,25 +9,23 @@ const User = require('../models/user');
  */
 router.get('/', (req, res, next) => {
   User.findById(req.user._id).populate('shows').exec((err, user) => {
-    url = user.shows.map((show) => {
-      return { url: `http://api.tvmaze.com/shows/${show.apiId}/episodes`, title: show.title }
-    });
+    url = user.shows.map(show => ({ url: `http://api.tvmaze.com/shows/${show.apiId}/episodes`, title: show.title }));
     const episodes = [];
     const q = async.queue((task, done) => {
       request(task.url, (err, response, body) => {
         if (err) return done(err);
         showsEpisodes = JSON.parse(body);
-        latestSeason = showsEpisodes[showsEpisodes.length-1].season;
+        latestSeason = showsEpisodes[showsEpisodes.length - 1].season;
         latestSeasonEpisodes = showsEpisodes
           .filter((el) => {
             if (el.season == latestSeason) {
               return el;
             }
           })
-          .map((el) => { return { title: `S${('0' + el.season).slice(-2)}E${('0' + el.number).slice(-2)} ${task.title}`, timestamp: el.airstamp } });
-        episodes.push.apply(episodes, latestSeasonEpisodes)
+          .map(el => ({ title: `S${(`0${el.season}`).slice(-2)}E${(`0${el.number}`).slice(-2)} ${task.title}`, timestamp: el.airstamp }));
+        episodes.push(...latestSeasonEpisodes);
         done();
-      })
+      });
     }, 5);
 
     q.drain = () => {

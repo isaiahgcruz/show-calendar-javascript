@@ -9,7 +9,7 @@ const isAuthenticated = require('../middlewares/auth').isAuthenticated;
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.render('index', { title: 'Calendar', isAuthenticated: req.isAuthenticated() });
 });
 
