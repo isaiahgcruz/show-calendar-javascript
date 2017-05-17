@@ -18,4 +18,22 @@ router.get('/', (req, res) => {
   });
 });
 
+/**
+ * Save events to a calendar
+ */
+router.post('/', (req, res) => {
+  const gCalendar = new gcal.GoogleCalendar(req.user.accessToken);
+  const payLoad = {
+    summary: req.body.calendar,
+  };
+
+  gCalendar.calendars.insert(payLoad, (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+
+    res.json(data);
+  });
+});
+
 module.exports = router;
