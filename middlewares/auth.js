@@ -1,18 +1,14 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const User = require('../models/user');
+const google = require('googleapis');
 const config = require('../config');
 
-// Use the GoogleStrategy within Passport.
-//   Strategies in Passport require a `verify` function, which accept
-//   credentials (in this case, an accessToken, refreshToken, and Google
-//   profile), and invoke a callback with a user object.
-passport.use(new GoogleStrategy({
+const oauth = new GoogleStrategy({
   clientID: config.google.clientId,
   clientSecret: config.google.clientSecret,
   callbackURL: 'http://localhost:3000/auth/google/callback',
-},
-  (accessToken, refreshToken, profile, done) => {
+}, (accessToken, refreshToken, profile, done) => {
     User.findOne({ googleId: profile.id }, (err, user) => {
       if (err) {
         return done(err);
@@ -38,7 +34,13 @@ passport.use(new GoogleStrategy({
       }
     });
   }
-));
+);
+
+// Use the GoogleStrategy within Passport.
+//   Strategies in Passport require a `verify` function, which accept
+//   credentials (in this case, an accessToken, refreshToken, and Google
+//   profile), and invoke a callback with a user object.
+passport.use(oauth);
 
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -57,6 +59,10 @@ const isAuthenticated = (req, res, next) => {
 
   res.redirect('/');
 };
+
+google.options({
+  auth: oauth,
+});
 
 module.exports = {
   passport,
