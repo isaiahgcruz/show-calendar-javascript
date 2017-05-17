@@ -1,20 +1,20 @@
 const express = require('express');
-const gcal = require('google-calendar');
+const google = require('googleapis');
 const _ = require('lodash');
 
 const router = express.Router();
+const calendar = google.calendar('v3');
 
 /**
  * Get all calendars
  */
 router.get('/', (req, res) => {
-  const gCalendar = new gcal.GoogleCalendar(req.user.accessToken);
-  gCalendar.calendarList.list((err, calendarList) => {
-    if (err) {
-      console.log(err);
-    }
+  calendar.calendarList.list({
+    userId: 'me',
+  }, (err, response) => {
+    if (err) console.log(err);
 
-    res.json(_.filter(calendarList.items, el => el.accessRole === 'owner' && !el.primary));
+    res.json(response);
   });
 });
 
@@ -22,18 +22,6 @@ router.get('/', (req, res) => {
  * Save events to a calendar
  */
 router.post('/', (req, res) => {
-  const gCalendar = new gcal.GoogleCalendar(req.user.accessToken);
-  const payLoad = {
-    summary: req.body.calendar,
-  };
-
-  gCalendar.calendars.insert(payLoad, (err, data) => {
-    if (err) {
-      console.log(err);
-    }
-
-    res.json(data);
-  });
 });
 
 module.exports = router;
