@@ -13,7 +13,7 @@
         <calendar></calendar>
       </div>
       <div class="column is-three-quarters">
-        <upcoming></upcoming>
+        <upcoming ref="upcoming"></upcoming>
       </div>
     </div>
   </div>
