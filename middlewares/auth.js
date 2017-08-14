@@ -67,4 +67,5 @@ google.options({
 module.exports = {
   passport,
   isAuthenticated,
+  google,
 };
